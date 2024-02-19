@@ -48,12 +48,13 @@ def compare_files(file_1, file_2):
                             start_of_file2 = line_file2.rfind('/')
                             file2_content = line_file2[start_of_file2 + 1:].strip()
                     
-                            if file1_content == file2_content:
+                            if file1_content == file2_content: #if a common file is found, print the common file
                                 print(file1_content)
                                 common_files.write(file1_content + "\n")
                                 count += 1 #add to the count of number of common files
                                 
             common_files.write(f"Number of common files: {count}")
+            
             if count == 0:
                 common_files.write("There are no common files") #if there are no common files
                             
