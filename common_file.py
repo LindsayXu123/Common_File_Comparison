@@ -1,8 +1,7 @@
 #Project to compare two files
 import sys
 
-try:
-    
+try: #command line arguments
     script_name = sys.argv[0]
     file_1 = sys.argv[1] #arguments
     file_2 = sys.argv[2]
@@ -46,7 +45,7 @@ else:
             
                 for i in range(len(file1_lines)): #go through each line in the first file
                     line_file1 = file1_lines[i]
-                    if "/" in line_file1:
+                    if "/" in line_file1: #assuming the only the lines with paths have files
                         start_of_file1 = line_file1.rfind('/') #find where the file name starts to only take the content after the /
                         file1_content = line_file1[start_of_file1 + 1:].strip()
             
@@ -58,7 +57,7 @@ else:
                                 file2_content = line_file2[start_of_file2 + 1:].strip()
                     
                                 if file1_content == file2_content: #if a common file is found, print the common file
-                                    file1_files += (line_file1)
+                                    file1_files += (line_file1) #adding to the str variable
                                     file2_files += (line_file2)
                                     common_filenames += (file1_content + "\n")
                                     count += 1 #add to the count of number of common files
@@ -78,4 +77,4 @@ else:
         else:
             print("Please check your file names") #if the two files were not found
           
-    compare_files(file_1, file_2)
+    compare_files(file_1, file_2) #executing the function
