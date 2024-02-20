@@ -5,10 +5,13 @@ script_name = sys.argv[0]
 file_1 = sys.argv[1] #arguments
 file_2 = sys.argv[2]
 
-print(f"Comparing files '{file_1}' and '{file_2}'...")
+print("\n" + f"Comparing files '{file_1}' and '{file_2}'...")
 
 def compare_files(file_1, file_2):
     count = 0 #number of common files
+    file1_files = ""
+    file2_files = ""
+    common_filenames = ""
     file_1_exists = False
     file_2_exists = False
     
@@ -30,7 +33,7 @@ def compare_files(file_1, file_2):
         file_2_exists = True
         
     if file_1_exists and file_2_exists: #will start comparing the files if they both are found
-        print("\n"+ "Here is a list of all the common files: ")
+        print("\n"+ "Here is a list of all the common files: " + "\n")
         
         with open("common_files", 'w') as common_files: #creates the output file
             common_files.write("Here is a list of common files from the two files: " + "\n")
@@ -49,10 +52,20 @@ def compare_files(file_1, file_2):
                             file2_content = line_file2[start_of_file2 + 1:].strip()
                     
                             if file1_content == file2_content: #if a common file is found, print the common file
-                                print(file1_content)
-                                common_files.write(file1_content + "\n")
+                                #print(file1_content)
+                                #common_files.write(file1_content + "\n")
+                                #print(line_file1)
+                                #common_files.write(line_file1 + "\n")
+                                file1_files += (line_file1)
+                                file2_files += (line_file2)
+                                common_filenames += (file1_content + "\n")
                                 count += 1 #add to the count of number of common files
-                                
+            
+            print("File 1 -> List of Files with Paths: " + "\n" + file1_files)
+            common_files.write("File 1 -> List of Files with Paths: " + "\n" + file1_files)
+            print("File 2 -> List of Files with Paths: " + "\n" + file2_files)
+            common_files.write("File 2 -> List of Files with Paths: " + "\n" + file2_files)
+                            
             common_files.write(f"Number of common files: {count}")
             
             if count == 0:
